@@ -1,6 +1,8 @@
 import base64
 import os
 import tempfile
+import matplotlib
+matplotlib.use("Agg")
 
 # Force matplotlib to non-GUI backend (important on servers)
 os.environ.setdefault("MPLBACKEND", "Agg")
