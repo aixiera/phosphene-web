@@ -96,9 +96,11 @@ export default function App() {
 
       <div className="panel">
         <div className="panelInner">
-          <h1>Alex's Phosphene Vision Simulator based on Pulse2percept</h1>
+          <h1>Alex's Phosphene Vision Simulator</h1>
           <p className="sub">
-            Upload a photo in jpg or png format and generate AlphaAMS, ArgusII, and PRIMA simulations.
+            Upload a photo in jpg or png format and generate AlphaAMS, ArgusII, and PRIMA simulations.<br/>
+            Based on the <a href="https://pulse2percept.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Pulse2percept</a> library.
+            Please do not upload images more than 50kb and ensure they are not sensitive.
           </p>
 
           <div className="row">
