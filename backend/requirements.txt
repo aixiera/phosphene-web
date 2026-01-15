@@ -5,3 +5,4 @@ pulse2percept
 matplotlib
 pillow
 numpy
+setuptools
