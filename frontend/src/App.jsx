@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import "./App.css";
+import DarkVeil from "./Darkveil";
 
 // Optional: if you already added DarkVeil, uncomment these:
 // import DarkVeil from "./DarkVeil";
@@ -55,6 +56,16 @@ export default function App() {
     <div className="page">
       {/* Optional DarkVeil background */}
       {/* <div className="bgWrap"><DarkVeil /></div> */}
+
+      <div className="bgWrap">
+        <DarkVeil
+        hueShift={0}
+        noiseIntensity={0.03}
+        scanlineIntensity={0.15}
+        scanlineFrequency={2.0}
+        warpAmount={0.2}
+        speed={0.5}/>
+      </div>
 
       <div className="panel">
         <div className="panelInner">
