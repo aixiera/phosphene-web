@@ -43,13 +43,40 @@ export default function App() {
 
   const previewUrl = useMemo(() => (file ? URL.createObjectURL(file) : null), [file]);
 
-  const onGenerate = () => {
-    if (!previewUrl) return;
-    setOut({
-      AlphaAMS: previewUrl,
-      ArgusII: previewUrl,
-      PRIMA: previewUrl,
-    });
+  
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
+
+  const onGenerate = async () => {
+    if (!file) return;
+
+    try {
+      // Clear old results so you can see it change
+      setOut({ AlphaAMS: "", ArgusII: "", PRIMA: "" });
+
+      const fd = new FormData();
+      fd.append("file", file);
+
+      console.log("Posting to:", `${API_BASE}/simulate`);
+
+      const res = await fetch(`${API_BASE}/simulate`, {
+        method: "POST",
+        body: fd,
+      });
+
+      const data = await res.json();
+      console.log("API response keys:", Object.keys(data));
+
+      if (!res.ok) throw new Error(data.detail || "Simulation failed");
+
+      setOut({
+        AlphaAMS: `data:image/png;base64,${data.AlphaAMS}`,
+        ArgusII: `data:image/png;base64,${data.ArgusII}`,
+        PRIMA: `data:image/png;base64,${data.PRIMA}`,
+      });
+    } catch (err) {
+      console.error(err);
+      alert(err.message || String(err));
+    }
   };
 
   return (
